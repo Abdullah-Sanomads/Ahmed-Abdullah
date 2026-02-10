@@ -1,0 +1,46 @@
+<style>
+
+  header{
+  display:flex;
+  justify-content:space-between;
+  }
+  .logo {
+    font-weight: bold;
+  }
+</style>
+
+  <h1 class="logo">{{ section.settings.logo | upcase }}</h1>
+  <p>{{ section.settings.header_paragraph }}</p>
+  <button>{{ section.settings.btn_gift | upcase }}</button>
+
+{% schema %}
+{
+  "name": "Default Custom Header",
+  "tag": "header",
+  "class": "custom-heaer",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "text",
+      "id": "logo",
+      "label": "Logo Text",
+      "default": "Logo"
+    },
+    {
+      "type": "text",
+      "id": "header_paragraph",
+      "label": "Header Paragraph"
+    },
+    {
+      "type": "text",
+      "id": "btn_gift",
+      "label": "Button Gift Text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Header"
+    }
+  ]
+}
+{% endschema %}

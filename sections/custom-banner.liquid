@@ -1,0 +1,40 @@
+<div>
+    <h1>{{ section.settings.logo}}</h1>
+    <p>{{  }}</p>
+    <button>choose gift U+2192</button>
+</div>
+
+
+
+
+{% schema %}
+{
+  "name": "custom-banner",
+  "tag": "section",
+  "class": "custom-banner",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "text",
+      "id": "logo",
+      "label": "Logo Text"
+    },
+    {
+      "type": "text",
+      "id": "header_paragraph",
+      "label": "Header Paragraph"
+    },
+    {
+      "type": "text",
+      "id": "btn-text",
+      "label": "Button Text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Header",
+      
+    }
+  ],
+}
+{% endschema %}
