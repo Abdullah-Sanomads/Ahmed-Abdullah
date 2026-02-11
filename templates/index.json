@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "image_banner": {
@@ -26,14 +35,15 @@
         "heading",
         "button"
       ],
+      "disabled": true,
       "settings": {
         "image_overlay_opacity": 40,
         "image_height": "large",
         "desktop_content_position": "bottom-center",
         "show_text_box": false,
-        "image_behavior": "none",
         "desktop_content_alignment": "center",
         "color_scheme": "scheme-3",
+        "image_behavior": "none",
         "mobile_content_alignment": "center",
         "stack_images_on_mobile": false,
         "show_text_below": false
@@ -41,6 +51,7 @@
     },
     "featured_collection": {
       "type": "featured-collection",
+      "disabled": true,
       "settings": {
         "title": "Featured products",
         "heading_size": "h2",
@@ -50,12 +61,11 @@
         "collection": "all",
         "products_to_show": 8,
         "columns_desktop": 4,
-        "color_scheme": "scheme-1",
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
         "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
+        "color_scheme": "scheme-1",
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
@@ -63,13 +73,46 @@
         "show_rating": false,
         "quick_add": "none",
         "columns_mobile": "2",
+        "swipe_on_mobile": false,
         "padding_top": 44,
         "padding_bottom": 36
+      }
+    },
+    "custom_gift_guide_banner_cRHEKC": {
+      "type": "custom-gift-guide-banner",
+      "name": "Custom Gift Guide Banner",
+      "settings": {
+        "logo": "shopify://shop_images/Group_1000007777.png",
+        "logo_width": 150,
+        "announcement_text": "Find the ideal gift for your loved ones.",
+        "top_btn_text": "CHOOSE GIFT",
+        "top_btn_link": "",
+        "top_bar_bg": "#f4f4f4",
+        "top_bar_text_color": "#000000",
+        "top_image": "shopify://shop_images/Frame.png",
+        "mobile_image_height": 200,
+        "desktop_image": "shopify://shop_images/Frame_1.png",
+        "mobile_image": "shopify://shop_images/Frame_2.png",
+        "heading": "The Gift Guide",
+        "description": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.",
+        "mobile_heading": "",
+        "mobile_description": "Discover Joy: Your Ultimate Holiday Gift Destination.",
+        "main_btn_text": "SHOP NOW",
+        "main_btn_link": "",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "center",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "footer_text": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL",
+        "mobile_footer_text": "SUSTAINABLE, ETHICALLY MADE ACTIVEWEAR",
+        "footer_bg_color": "#f5f5f5",
+        "footer_text_color": "#000000"
       }
     }
   },
   "order": [
     "image_banner",
-    "featured_collection"
+    "featured_collection",
+    "custom_gift_guide_banner_cRHEKC"
   ]
 }
