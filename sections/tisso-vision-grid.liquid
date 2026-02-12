@@ -1,0 +1,157 @@
+{{ 'tisso-vision-grid.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'tisso-vision-grid.js' | asset_url }}" defer="defer"></script>
+
+<div class="tisso-vision-grid section-{{ section.id }}-padding">
+  <div class="tisso-vision-grid__header">
+    <h2 class="tisso-vision-grid__title">{{ section.settings.title }}</h2>
+  </div>
+
+  <div class="tisso-vision-grid__container">
+    {% for block in section.blocks %}
+      {% if block.settings.product != blank %}
+        {% assign product = all_products[block.settings.product] %}
+        <div class="tisso-vision-item" {{ block.shopify_attributes }}>
+          {% if product.featured_image %}
+            <img
+              src="{{ product.featured_image | image_url: width: 800 }}"
+              alt="{{ product.title }}"
+              class="tisso-vision-item__image"
+              loading="lazy"
+              width="400"
+              height="500"
+            >
+          {% else %}
+            {{ 'product-1' | placeholder_svg_tag: 'tisso-vision-item__image' }}
+          {% endif %}
+
+          <div
+            class="tisso-vision-hotspot"
+            style="--hotspot-x: {{ block.settings.hotspot_x }}%; --hotspot-y: {{ block.settings.hotspot_y }}%; --mobile-hotspot-x: {{ block.settings.mobile_hotspot_x }}%; --mobile-hotspot-y: {{ block.settings.mobile_hotspot_y }}%;"
+            data-hotspot
+            {% capture product_data %}{
+              "title": {{ product.title | json }},
+              "handle": {{ product.handle | json }},
+              "price": {{ product.price | json }},
+              "description": {{ product.description | json }},
+              "featured_image": {{ product.featured_image | image_url: width: 800 | json }},
+              "options": [
+                {% for option in product.options_with_values %}
+                  {
+                    "name": {{ option.name | json }},
+                    "values": [
+                      {% for value in option.values %}
+                        {
+                          "name": {{ value.name | json }},
+                          "swatch": {
+                            "color": {{ value.swatch.color.rgb | json }},
+                            "image": {% if value.swatch.image %}{{ value.swatch.image | image_url: width: 50 | json }}{% else %}null{% endif %}
+                          }
+                        }{% unless forloop.last %},{% endunless %}
+                      {% endfor %}
+                    ]
+                  }{% unless forloop.last %},{% endunless %}
+                {% endfor %}
+              ],
+              "variants": {{ product.variants | json }}
+            }{% endcapture %}
+            data-product='{{ product_data | escape }}'
+          >
+            <span>+</span>
+          </div>
+        </div>
+      {% else %}
+        <div class="tisso-vision-item placeholder">
+          {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'tisso-vision-item__image' }}
+          <div class="tisso-vision-hotspot" style="--hotspot-x: 50%; --hotspot-y: 50%; --mobile-hotspot-x: 50%; --mobile-hotspot-y: 50%;">
+            <span>+</span>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+{% render 'tisso-vision-popup' %}
+
+{% schema %}
+{
+  "name": "Tisso Vision Grid",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Tisso vision in the wild"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product Block",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
+        },
+        {
+          "type": "range",
+          "id": "hotspot_x",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Hotspot Horizontal Position",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "hotspot_y",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Hotspot Vertical Position",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "mobile_hotspot_x",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Mobile Hotspot Horizontal Position",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "mobile_hotspot_y",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Mobile Hotspot Vertical Position",
+          "default": 50
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tisso Vision Grid",
+      "blocks": [
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" }
+      ]
+    }
+  ]
+}
+{% endschema %}
