@@ -129,7 +129,7 @@
 @media screen and (min-width: 990px) {
   .gift-guide-content-col {
     padding-left: 5rem;
-    width: 50%;
+    padding-right: 0px;
   }
 }
 
